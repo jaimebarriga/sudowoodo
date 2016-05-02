@@ -1,6 +1,7 @@
 var utils = require('./utils.js');
 var uuid = require('node-uuid');
 var responsesjs = require('../../responses.js')
+var config = require('./config.js');
 
 var Responses = responsesjs.responses
 var randomResponse = responsesjs.randomResponse
@@ -220,6 +221,11 @@ module.exports = {
       }, function(error, response, body) {
         bot.reply(message, "Something bad happened, please let someone know: " + error.code)
       });
+    }
+  },
+  general: {
+    getURL: function(bot, message) {
+      bot.reply(message, "You can access the leaderboards here: "+config.baseUrl);
     }
   }
 }

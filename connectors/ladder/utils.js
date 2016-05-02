@@ -1,4 +1,5 @@
-var request = require('request').defaults({'baseUrl': 'http://localhost:5000/api/v1'});
+var config = require('./config.js');
+var request = require('request').defaults({'baseUrl': config.baseUrl+config.apiUrl});
 
 module.exports.parser = {
   user: function(userString) {
@@ -68,5 +69,6 @@ module.exports.request = {
       if (!error && response.statusCode == 200) { callback(s, r, d); }
       else { errorCallback(s, r, d); }
     });
-  }
+  },
+  request: request
 }

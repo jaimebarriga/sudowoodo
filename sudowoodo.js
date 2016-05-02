@@ -74,7 +74,7 @@ controller.hears('(\\S+) (won against|beat|was beaten by) (\\S+)(?:.* (\\d+)[:|-
 controller.on('user_channel_join', Ladder.players.add.one);
 controller.hears('sudo add player <@(\\S+)>', ['direct_message'], Ladder.players.add.manual);
 
-controller.hears('^(hello|hey|yo$|hi|howdy|bonjour|hallo|hullo)( sudowoodo)?',
+controller.hears('^(hello|hey|yo$|hi|howdy|bonjour|hallo|hullo|hola)( sudowoodo)?',
   ['direct_message','direct_mention','mention'],
   function(bot,message) {
     greetingCount++;
@@ -160,6 +160,8 @@ controller.hears("^who", ["direct_mention", "mention"], function(bot, message) {
   ]
   bot.reply(message, randomResponse(responses));
 })
+
+controller.hears(['(leaderboard(?:s)?\\s)?(?:[Uu][Rr][Ll]|link)'],['direct_mention', 'mention', 'direct_message'], Ladder.general.getURL);
 
 controller.hears(["\\?", '^what', '^why', '^where', '^how', '^who'], ["direct_mention", "mention"], function(bot, message) {
   var respList = ["lol idk",
